@@ -4,12 +4,16 @@ A simple Spring Boot REST API for managing to-do items.
 
 ## Overview
 
-This repository implements a basic CRUD to-do application using Spring Boot, Spring Data JPA, and an in-memory H2 database (by default).
+This repository implements a basic CRUD to-do application using Spring Boot, Spring Data JPA, and MySQL.
 
 ## Prerequisites
 
-- Java 17+ (or the version configured in `pom.xml`)
+- Java 21+ (configured in `pom.xml`)
 - Maven (or use the included Maven wrapper `mvnw` / `mvnw.cmd`)
+- **MySQL Server** running locally on `localhost:3306`
+  - Database: `todo_db`
+  - Username: `root`
+  - Password: `rootpassword`
 
 ## Build
 
@@ -75,7 +79,9 @@ mvnw.cmd test
 
 ## Notes
 
-- Database and other settings are in `src/main/resources/application.properties`.
+- **Database:** MySQL at `localhost:3306` with database name `todo_db`
+- **Database User:** `root` / `rootpassword`
+- Database configuration is in `src/main/resources/application.properties`.
 - Controller is implemented in `src/main/java/com/example/to_do_api/controller/ToDoController.java`.
 
 ---
