@@ -1,16 +1,13 @@
 package com.example.to_do_api.controller;
 
+import com.example.to_do_api.exception.ToDoNotFoundException;
 import com.example.to_do_api.service.ToDoService;
 import com.example.to_do_api.model.ToDo;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 import java.util.ArrayList;
 
 @RestController
@@ -33,6 +30,15 @@ public class ToDoController {
     @PostMapping()
     public ResponseEntity<ToDo> createToDo(@RequestBody ToDo entity) {
         return ResponseEntity.ok(service.createToDo(entity));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteToDo(@PathVariable Integer id) {
+        if(!service.existsById(id)){
+            throw new ToDoNotFoundException("Todo not found");
+        }
+        service.deleteToDoById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

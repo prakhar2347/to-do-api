@@ -27,4 +27,12 @@ public class ToDoService {
         return repository.findAll();
     }
 
-};
+    public void deleteToDoById(int id) {
+        repository.deleteById(id);}
+
+    public boolean existsById( int id){
+        return repository.existsById(id);
+    }
+}
+
+
